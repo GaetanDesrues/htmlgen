@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="htmlgen",
-    version="0.1.000",
+    name="htmlgeng",
+    version="0.1.002",
     author="Gaetan Desrues",
     author_email="gdesrues@gmail.com",
     url="https://github.com/GaetanDesrues/htmlgen",
