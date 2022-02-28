@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="htmlgeng",
+    name="htmlit",
     version="0.1.002",
     author="Gaetan Desrues",
     author_email="gdesrues@gmail.com",

@@ -4,6 +4,8 @@
 
 As easy as 
 ```python
+from htmlit import HtmlGenerator
+
 gen = HtmlGenerator()
 
 with gen.row as r:
@@ -17,7 +19,7 @@ with gen.row as r:
 
 ## Install
 ```bash
-pip install htmlgen
+pip install htmlit
 pip install -e <path-to-repo>/htmlgen
 pip install git+ssh://git@github.com/GaetanDesrues/htmlgen.git
 ```

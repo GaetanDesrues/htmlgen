@@ -3,7 +3,7 @@ import logging
 import pandas as pd
 import treefiles as tf
 
-from htmlgen.HtmlGenerator import HtmlGenerator
+from htmlit import HtmlGenerator
 
 
 def main():
