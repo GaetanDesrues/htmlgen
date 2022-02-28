@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock title %}
+
+{% block body %}
+{{ super() }}
+
+
+<main class="container">
+<br/><br/>
+{{ python_dyn | safe }}
+</main>
+
+
+{% endblock body %}
