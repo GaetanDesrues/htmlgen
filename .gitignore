@@ -4,3 +4,4 @@ venv
 *.zip
 dist
 *egg-info
+*.pyc
