@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="htmlit",
-    version="0.1.002",
+    version="0.1.003",
     author="Gaetan Desrues",
     author_email="gdesrues@gmail.com",
     url="https://github.com/GaetanDesrues/htmlgen",
