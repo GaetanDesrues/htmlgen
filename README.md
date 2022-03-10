@@ -1,6 +1,7 @@
 # htmlgen
 
 ![](rsc/ex.png)
+![](rsc/ex2.png)
 
 As easy as 
 ```python

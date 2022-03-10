@@ -11,5 +11,5 @@ git :
 	git push origin master
 
 pip :
-	# pip install --upgrade htmlgen
-	echo "You can run: `pip install --upgrade htmlgen`"
+	# pip install --upgrade htmlit
+	echo "You can run: `pip install --upgrade htmlit`"
