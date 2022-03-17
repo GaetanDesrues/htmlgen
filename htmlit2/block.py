@@ -72,6 +72,7 @@ class BlockHolder:
             x.wrap(f'<div class="{col_w}">')
         cols.wrap(f'<div class="row">')
         self.blocks.append(cols)
+        return self
 
     def nav(self, *onglets: "BlockHolder"):
         """
@@ -82,6 +83,7 @@ class BlockHolder:
         elems = BlockHolder(*onglets)
         for x in elems.blocks:
             idx = x.kw["title"].lower().replace(" ", "_")
+            idx += tf.get_string()
             ac = "active" if x.kw.get("active") else ""
             x.wrap(f'<div id="{idx}" class="tab-pane fade show {ac}">')
             x_link = BaseBlock(
@@ -92,6 +94,7 @@ class BlockHolder:
         nav.wrap('<ul class="nav nav-tabs">')
         self.blocks.append(nav)
         self.blocks.append(elems)
+        return self
 
     def dataframe(self, df, *classes: Union[str, List[str]], **kw):
         """
@@ -113,11 +116,16 @@ class BlockHolder:
 
         html = make_plotly_line(**kw)
         self.blocks.append(BaseBlock(html))
+        return self
 
     def figure(self, fname, title: str = None):
-        fig = BlockHolder.new(
-            f'<a href="{fname}"><img src="{fname}" class="img-fluid"></a>'
-        )
+        if fname.endswith(".mp4"):
+            fig = BlockHolder.new(f'<source src="{fname}" type="video/mp4">')
+            fig.wrap('<video width="480" height="320" controls autoplay loop>')
+        else:
+            fig = BlockHolder.new(f'<img src="{fname}" class="img-fluid">')
+            fig.wrap(f'<a href="{fname}">')
+
         fig.add_asset(fname)
         if title:
             caption = BlockHolder.new(title).wrap(
@@ -137,7 +145,7 @@ class Generator:
         self.title = title
         self.holder = holder
         self.env = Environment(
-            loader=FileSystemLoader("templates"),
+            loader=FileSystemLoader(tf.f(__file__) / "templates"),
             autoescape=select_autoescape(),
         )
 
@@ -158,7 +166,7 @@ class Generator:
         html = template.render(
             enumerate=enumerate,
             python_dyn=self.holder.html,
-            title=tf.none(self.title, "htmlit report"),
+            title=tf.none(self.title, "htmlit2 report"),
         )
 
         # Deal with assets
