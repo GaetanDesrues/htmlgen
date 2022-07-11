@@ -26,7 +26,10 @@ class BlockHolder:
 
     def markdown(self, txt, *classes):
         x = md.markdown(txt, extensions=["fenced_code"])
-        self.blocks.append(BaseBlock(x))
+        cls = ' '.join(classes)
+        self.blocks.append(
+            BlockHolder(BaseBlock(x)).wrap(f'<div class="{cls}">')
+        )
         return self
 
     def vspace(self, val):
@@ -138,6 +141,9 @@ class BlockHolder:
     @classmethod
     def new(cls, *ct):
         return cls(*[BaseBlock(x) for x in ct])
+
+    def add_html(self, x):
+        self.blocks.append(BaseBlock(x))
 
 
 class Generator:
