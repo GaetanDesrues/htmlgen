@@ -179,8 +179,9 @@ class Generator:
         for x in self.holder.assets:
             a, b = os.path.splitext(tf.basename(x))
             nname = f"{a}_{tf.get_string()}{b}"
-            tf.copyFile(x, out_dir / nname)
-            html = html.replace(x, nname)
+            if tf.isfile(x):
+                tf.copyFile(x, out_dir / nname)
+                html = html.replace(x, nname)
 
         html = minify(html.replace("\u2013", "-"), remove_empty_space=True)
         fname = out_dir / "index.html"
